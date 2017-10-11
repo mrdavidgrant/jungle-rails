@@ -3,11 +3,15 @@ class Admin::CategoriesController < ApplicationController
     @categories = Category.order(id: :desc).all
   end
 
+  def new
+    @category = Category.new
+  end
+
   def create
-    @category = Category.new(catagory_params)
+    @category = Category.new(category_params)
 
     if @category.save
-      redirect_to [:admin, :category], notice: 'Category created!'
+      redirect_to [:admin, :categories], notice: 'Category created!'
     else
       render :new
     end
