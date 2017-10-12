@@ -18,5 +18,12 @@ class ApplicationController < ActionController::Base
     }
     cookies[:cart]
   end
+  
+  def logged_in?
+    @current_user ||= (User.find(session[:user_id]).name if session[:user_id])
+    
+  end
+  
+  helper_method :logged_in?
 
 end
