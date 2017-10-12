@@ -4,6 +4,10 @@
     <h1>My Cart</h1>
   </header>
 
+      <% if cart.length == 0 %>
+      <% @cart_total = 100000000000 %>
+        <div class="empty-cart">Thank you for trying to purchase from us.  While our profit margins are admittedly the highest when people give us money for nothing, we tend to think that is a one sided deal.  We would like to give you something in return for your hard earned money.  Please, view our store and find a product or two you would like to have and use.  Then, please do feel free to check out.  We welcome your business.</div>
+      <% end %>
   <div class="panel panel-default items">
     <table class="table table-bordered">
       <thead>
@@ -15,6 +19,8 @@
         </tr>
       </thead>
       <tbody>
+      <tr>
+      
         <% @cart_total = 0 %>
         <% cart.each do |product_id, details| %>
           <%= render 'item', product_id: product_id, details: details %>
