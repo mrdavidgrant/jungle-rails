@@ -27,5 +27,17 @@
     </div>
 
   </article>
-
+  <article>
+  <h2>Reviews</h2>
+  <table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Rating</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render @product.reviews %>
+    </tbody>
 </section>
