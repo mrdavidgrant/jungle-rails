@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   resources :users
   root to: 'products#index'
 
-  resources :products, only: [:index, :show]
+  resources :products, only: [:index]
+  resources :products, only: [:show] do
+    resources :reviews, only: [:create, :destroy]
+  end
   resources :categories, only: [:show]
 
   resource :cart, only: [:show] do
@@ -12,11 +15,11 @@ Rails.application.routes.draw do
   end
 
   resources :orders, only: [:create, :show]
-  resources :sessions
+  resources :sessions, only: [:create, :destroy]
 
   get 'signup', to: 'users#new', as: 'signup'
   get 'login', to: 'sessions#new', as: 'login'
-  get 'logout', to: 'sessions#destroy', as: 'logout'
+  post 'logout', to: 'sessions#destroy', as: 'logout'
 
   namespace :admin do
     root to: 'dashboard#show'

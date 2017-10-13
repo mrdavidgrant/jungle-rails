@@ -40,11 +40,12 @@
           </ul>
         </li>
         <% if logged_in? %>
+        <% @current_user = logged_in? %>
           <li>
-            <span class="username"><%= logged_in? %></span>
+            <span class="username"><%= @current_user.name %></span>
           </li>
           <li>
-            <%= link_to 'Logout', logout_path %>
+            <%= link_to 'Logout', logout_path, method: :post %>
           </li>
         <% else %>
           <li>
