@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-
+  
   def create
     product = Product.find params[:product_id] 
     @user = logged_in?
@@ -12,6 +12,13 @@ class ReviewsController < ApplicationController
       redirect_to product
     end
 
+  end
+
+  def destroy
+    @review = Review.find params[:id]
+    product = Product.find @review.product_id
+    @review.destroy
+    redirect_to product
   end
 
   private

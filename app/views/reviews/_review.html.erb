@@ -3,9 +3,18 @@
     <%= review.user.name %>
   </td>
   <td>
-    <%= review.rating %>
+  <% (1..review.rating).each do %>
+    <i class="fa fa-star-o" aria-hidden="true" />
+  <% end %>
   </td>
   <td>
     <%= review.description %>
+  </td>
+  <td>
+  <% current_user = logged_in? %>
+  <% @review = review %>
+  <% if current_user && current_user.id == review.user.id %>
+    <%= link_to fa_icon('trash'), [@product,@review], class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: "Are you sure?" } %>
+  <% end %>
   </td>
 </tr>
